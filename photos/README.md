@@ -1,0 +1,1 @@
+Place jacket photos here (randy-racer.jpg, luna.jpg, trombone.jpg, etc.) so the site can source them correctly.
