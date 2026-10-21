@@ -1,13 +1,14 @@
-# Copper Frequency Jackets
+# Copper Frequency Jacket Studio — Open as App
 
-Interactive studio for the Copper Frequency Jacket collection.
+## How to open it
 
-## Structure
-- `index.html` — main site
-- `photos/` — jacket images (source photos here so the build can resolve them)
+1. Download this repo or the `app.py` file.
+2. Open a terminal in the folder.
+3. Run:
+   ```bash
+   python app.py
+   ```
 
-## Styles
-Men’s: Bomber, London Calling, Mountain Monk, Randy Racer, Líptė Rähł, T3P0, Trombone
-Women’s: Luna, Vesper, Riot, Aria, Nyx
+It will automatically open in your browser as a local application.
 
-Manufacturing and Kickstarter sections included.
+All sections included: Men’s Line, Women’s Line, Manufacturing, Kickstarter.
