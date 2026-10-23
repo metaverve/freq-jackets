@@ -1,1 +1,271 @@
-FULL_VISUAL_WITH_PHOTOS
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copper Frequency — jackets you can hear and feel</title>
+<meta name="description" content="Copper Frequency jackets: racing, bomber, moto, punk, technical and tactical jackets wired with a copper circuit and tactile transducers. Twelve styles across a men's and women's line.">
+<meta property="og:title" content="Copper Frequency">
+<meta property="og:description" content="Jackets wired with copper and tactile transducers, so you feel the music. Twelve styles. Coming to Kickstarter.">
+<meta property="og:image" content="assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#120E0B">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* ---------- hero */
+  .hero { padding: clamp(28px, 4vw, 56px) 0 clamp(56px, 8vw, 110px); position: relative; }
+  .hero::before { /* grid */
+    content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+    background-image: linear-gradient(var(--rule) 1px, transparent 1px), linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+    background-size: 64px 64px; mask-image: radial-gradient(70% 70% at 70% 40%, #000, transparent 75%); -webkit-mask-image: radial-gradient(70% 70% at 70% 40%, #000, transparent 75%);
+  }
+  .hero .wrap { display: grid; grid-template-columns: 1.02fr 1fr; gap: clamp(24px, 4vw, 64px); align-items: center; position: relative; }
+  .hero h1 { margin: 0 0 28px; }
+  .hero h1 span { display: block; }
+  .hero h1 .outline { color: transparent; -webkit-text-stroke: 2px var(--copper); }
+  .hero .lede { margin-bottom: 32px; }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .facts { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 32px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--rule); max-width: 520px; }
+  .facts b { display: block; font: 800 38px/1 var(--display); color: var(--bone); }
+  .facts span { font-size: 14px; color: var(--ash); }
+
+  .idx ol { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+  .idx li { border-bottom: 1px solid var(--rule); }
+  .idx button { width: 100%; display: grid; grid-template-columns: 28px 1fr auto; align-items: center; gap: 16px; padding: 10px 4px; background: none; border: 0; color: var(--bone); cursor: pointer; text-align: left; }
+  .idx i { width: 28px; height: 28px; border-radius: 6px; border: 1px solid rgba(255,255,255,.18); }
+  .idx b { font: 800 clamp(26px, 2.6vw, 36px)/1 var(--display); text-transform: uppercase; }
+  .idx span { color: var(--ash); font-size: 14px; }
+  .idx button:hover b, .idx button:focus-visible b { color: var(--copper-hi); }
+  @media (max-width: 960px) { .hero .wrap { grid-template-columns: 1fr; } .facts { margin-top: 32px; } }
+
+  /* ---------- collection */
+  .seg { display: inline-flex; padding: 4px; border: 1px solid var(--rule); border-radius: 999px; margin-bottom: 36px; }
+  .seg button { min-height: 44px; padding: 0 22px; border-radius: 999px; border: 0; background: transparent; color: var(--ash); font: 600 15px var(--body); cursor: pointer; }
+  .seg button[aria-selected="true"] { background: var(--bone); color: var(--carbon); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.4vw, 28px); }
+  .item { display: flex; flex-direction: column; justify-content: flex-start; align-self: start; width: 100%; text-align: left; background: none; border: 0; padding: 0; color: inherit; font: inherit; cursor: pointer; }
+  .item .stage { transition: box-shadow .25s; }
+  .item:hover .stage, .item:focus-visible .stage { box-shadow: inset 0 0 0 1px var(--copper); }
+  .item .meta { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 16px 4px 0; }
+  .item h3 { text-transform: uppercase; }
+  .item .n { font-size: 14px; color: var(--ash); white-space: nowrap; }
+  .item p { padding: 6px 4px 0; color: var(--ash); font-size: 15px; margin: 0; }
+  /* feature card: spans 2 or 3 columns so rows always fill; render left, story right */
+  .item.feature { grid-column: span var(--span); display: grid; grid-template-columns: repeat(var(--span), minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 28px); align-items: center; }
+  .item.feature .txt { grid-column: span calc(var(--span) - 1); padding: 8px 0; }
+  .item.feature h3 { font-size: clamp(48px, 6vw, 88px); margin-bottom: 16px; }
+  .item.feature .desc { color: var(--bone); font-size: 18px; padding: 0; max-width: 46ch; margin: 0 0 20px; }
+  .item.feature .spec { max-width: 420px; }
+  .item.feature .go { display: inline-flex; margin-top: 24px; color: var(--copper-hi); font-weight: 600; border-bottom: 1px solid var(--copper); padding-bottom: 2px; }
+  @media (max-width: 960px) { .grid { grid-template-columns: repeat(2, 1fr); } .item.feature { grid-column: span 2; grid-template-columns: 1fr 1fr; } .item.feature .txt { grid-column: auto; } }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } .item.feature { grid-column: auto; grid-template-columns: 1fr; } .item.feature h3 { font-size: 52px; } }
+
+  /* ---------- platform */
+  .platform { background: linear-gradient(180deg, transparent, #17110D 30%, #17110D 70%, transparent); }
+  .layers { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+  .layers ol { list-style: none; margin: 0; padding: 0; counter-reset: l; }
+  .layers li { counter-increment: l; display: grid; grid-template-columns: 56px 1fr; gap: 4px 16px; padding: 22px 0; border-top: 1px solid var(--rule); }
+  .layers li:last-child { border-bottom: 1px solid var(--rule); }
+  .layers li::before { content: counter(l); grid-row: span 2; font: 800 44px/1 var(--display); color: var(--copper); }
+  .layers li h3 { font-size: 26px; }
+  .layers li p { margin: 0; color: var(--ash); font-size: 16px; }
+  .layers li.on h3 { color: var(--copper-hi); }
+  .explode { width: 100%; height: auto; }
+  .explode .ly { transition: transform .5s cubic-bezier(.2,.7,.2,1), opacity .3s; }
+  .explode .ly.dim { opacity: .35; }
+  @media (max-width: 860px) { .layers { grid-template-columns: 1fr; } }
+
+  /* ---------- pairs */
+  .pairs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .pair { background: var(--char); border-radius: 16px; padding: 14px 14px 18px; cursor: pointer; border: 1px solid transparent; color: inherit; font: inherit; text-align: left; }
+  .pair:hover { border-color: var(--rule); }
+  .pair .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .pair .duo { gap: 6px; }
+  .pair .duo > div { aspect-ratio: 6/7; min-width: 0; border-radius: 10px; overflow: hidden; }
+  .pair .sw-spec { display: none; }
+  .pair b { display: block; font: 700 22px/1.05 var(--display); text-transform: uppercase; margin-top: 8px; }
+  .pair span { display: block; font-size: 14px; line-height: 1.4; color: var(--ash); margin-top: 4px; }
+  @media (max-width: 1000px) { .pairs { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 620px) { .pairs { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ---------- campaign band */
+  .band .wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; }
+  .tiers-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .tiers-mini div { border: 1px solid var(--rule); border-radius: 14px; padding: 16px 18px; background: var(--carbon); }
+  .tiers-mini b { display: block; font: 800 34px/1 var(--display); color: var(--copper-hi); }
+  .tiers-mini span { font-size: 14px; color: var(--ash); }
+  @media (max-width: 860px) { .band .wrap { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header id="top"></header>
+
+<main>
+  <!-- ======================================================== HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1><span>Wear the</span><span class="outline">frequency</span></h1>
+        <p class="lede">Twelve jackets wired with a copper circuit and tactile transducers. Plug in your music and the bass moves through the jacket, so you feel it as much as you hear it.</p>
+        <div class="cta-row"><span id="heroBack"></span><a class="btn btn-line" href="#collection">See the collection</a></div>
+        <div class="facts">
+          <div><b>12</b><span>styles, men's and women's</span></div>
+          <div><b>4–10</b><span>transducers per jacket</span></div>
+          <div><b>1</b><span>shared copper platform</span></div>
+        </div>
+      </div>
+
+      <div class="idx" aria-label="All twelve styles">
+        <ol id="styleIndex"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== COLLECTION -->
+  <section id="collection" class="rule-top">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>The collection</h2>
+        <p>Seven men's styles and five women's, each one built on the same copper platform. Five of them come as matched pairs.</p>
+      </div>
+      <div class="seg" role="tablist" aria-label="Line">
+        <button role="tab" aria-selected="true" data-line="men">Men's line</button>
+        <button role="tab" aria-selected="false" data-line="women">Women's line</button>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- ======================================================== PLATFORM -->
+  <section id="platform" class="platform">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>How it works</h2>
+        <p>Every style shares one platform, built in four layers from the outside in. Swap the shell and the wiring stays the same.</p>
+      </div>
+      <div class="layers">
+        <svg class="explode" viewBox="0 0 560 520" role="img" aria-label="Exploded view of the four jacket layers">
+          <defs>
+            <linearGradient id="exCu" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6B27A"/><stop offset=".5" stop-color="#C8743A"/><stop offset="1" stop-color="#7A3E19"/></linearGradient>
+            <pattern id="weave" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10" height="10" fill="#5b2f14"/><path d="M0 5h10M5 0v10" stroke="#C8743A" stroke-width="2" opacity=".75"/></pattern>
+          </defs>
+          <g transform="translate(280 0)">
+            <g class="ly" data-l="0"><path d="M-200 420 L0 330 L200 420 L0 510 Z" fill="#1d1d1f" stroke="#3a3a3a"/><path d="M-200 420 L0 330 L200 420" fill="none" stroke="#555" stroke-width="1.5"/>
+              <rect x="-42" y="398" width="84" height="44" rx="10" transform="skewX(-12)" fill="#0a0a0a" stroke="url(#exCu)" stroke-width="3"/><circle cx="96" cy="452" r="12" fill="#000" stroke="#F6B27A" stroke-width="3"/></g>
+            <g class="ly" data-l="1"><path d="M-200 300 L0 210 L200 300 L0 390 Z" fill="#141010" stroke="#3a2e25"/>
+              <path d="M-120 300 L-40 264 L40 300 L120 264" fill="none" stroke="url(#exCu)" stroke-width="4"/><path d="M-80 318 L0 354 L80 318" fill="none" stroke="url(#exCu)" stroke-width="4"/>
+              <g fill="#0a0a0a" stroke="url(#exCu)" stroke-width="3"><ellipse cx="-120" cy="300" rx="22" ry="11"/><ellipse cx="40" cy="300" rx="22" ry="11"/><ellipse cx="120" cy="264" rx="22" ry="11"/><ellipse cx="-40" cy="264" rx="22" ry="11"/><ellipse cx="0" cy="354" rx="22" ry="11"/></g></g>
+            <g class="ly" data-l="2"><path d="M-200 180 L0 90 L200 180 L0 270 Z" fill="url(#weave)" stroke="#C8743A" stroke-opacity=".6"/></g>
+            <g class="ly" data-l="3"><path d="M-200 60 L0 -30 L200 60 L0 150 Z" transform="translate(0 30)" fill="#F1EEE8" stroke="#888"/><path d="M-150 112 L-110 94 L60 170 L20 188 Z" transform="translate(0 0)" fill="#D3262D" opacity=".9"/><path d="M-96 88 L-56 70 L114 146 L74 164 Z" fill="#D3262D" opacity=".9"/></g>
+          </g>
+        </svg>
+        <ol id="layerList">
+          <li data-l="3"><h3>Shell</h3><p>The outer jacket: racing twill, flight nylon, leather, canvas or a 3-layer technical shell. This is what changes from style to style.</p></li>
+          <li data-l="2"><h3>Copper weave</h3><p>A copper-plated conductive fabric bonded under the shell. It carries the circuit pattern you can see on the outside of each jacket.</p></li>
+          <li data-l="1"><h3>Transducers and harness</h3><p>Flat tactile transducers sit in pockets against the body, wired on a sealed low-voltage harness. They turn the low end of your music into movement.</p></li>
+          <li data-l="0"><h3>Frequency module and port</h3><p>A small rechargeable pod holds the amp and battery. It clips out so the jacket can be washed. The port at the hem takes a meter plug-in that shows the signal live.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== PAIRS -->
+  <section class="rule-top" style="padding-top:clamp(64px,8vw,110px)">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Made in pairs</h2>
+        <p>Five of the men's styles have a women's counterpart, cut for a different body with the same circuit. Back them together as a pair.</p>
+      </div>
+      <div class="pairs" id="pairs"></div>
+    </div>
+  </section>
+
+  <!-- ======================================================== CAMPAIGN -->
+  <section class="band">
+    <div class="wrap">
+      <div>
+        <h2 style="margin-bottom:20px">Coming to Kickstarter</h2>
+        <p class="lede" id="bandCopy"></p>
+        <div class="cta-row" style="margin-top:28px"><span id="bandBack"></span><a class="btn btn-line" href="kickstarter.html">See the full campaign</a></div>
+      </div>
+      <div class="tiers-mini" id="tiersMini"></div>
+    </div>
+  </section>
+</main>
+
+<footer id="foot"></footer>
+
+<script src="assets/jackets.js"></script>
+<script src="assets/site.js"></script>
+<script>
+mountChrome('home');
+
+/* ---------------- hero style index */
+document.getElementById('styleIndex').innerHTML = JACKETS.map((j) => `<li><button data-slug="${j.slug}"><i style="background:${j.base};box-shadow:inset -6px 0 0 ${j.trim}"></i><b>${j.name}</b><span>${j.line === 'men' ? "Men's" : "Women's"}</span></button></li>`).join('');
+document.getElementById('styleIndex').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) openJacket(b.dataset.slug); });
+
+/* ---------------- collection grid */
+const grid = document.getElementById('grid');
+function showLine(line) {
+  document.querySelectorAll('.seg button').forEach((b) => b.setAttribute('aria-selected', b.dataset.line === line));
+  const list = JACKETS.filter((j) => j.line === line);
+  // the lead style spans enough columns that the remaining styles fill whole rows of 3
+  const span = [3, 1, 2][(list.length - 1) % 3];
+  grid.innerHTML = list.map((j, i) => i === 0 && span > 1 ? `
+    <button class="item feature" style="--span:${span}" data-slug="${j.slug}" aria-label="${j.name} — view details">
+      <div class="stage plinth" data-render="${j.slug}"></div>
+      <div class="txt">
+        <h3>${j.name}</h3>
+        <p class="desc">${j.desc}</p>
+        <dl class="spec"><dt>Shell</dt><dd>${j.shell}</dd><dt>Fit</dt><dd>${j.fit}</dd><dt>Transducers</dt><dd>${j.transducers}</dd></dl>
+        <span class="go">View ${j.name}</span>
+      </div>
+    </button>` : `
+    <button class="item" data-slug="${j.slug}" aria-label="${j.name} — view details">
+      <div class="stage plinth" data-render="${j.slug}"></div>
+      <div class="meta"><h3>${j.name}</h3><span class="n">${j.transducers} transducers</span></div>
+      <p>${j.tagline}</p>
+    </button>`).join('');
+  grid.querySelectorAll('[data-render]').forEach((el) => mountJacket(el, jacketBySlug(el.dataset.render)));
+}
+document.querySelector('.seg').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) showLine(b.dataset.line); });
+grid.addEventListener('click', (e) => { const b = e.target.closest('.item'); if (b) openJacket(b.dataset.slug); });
+showLine('men');
+
+/* ---------------- exploded layers: highlight on hover / focus */
+const list = document.getElementById('layerList');
+function hi(l) {
+  document.querySelectorAll('.explode .ly').forEach((g) => {
+    const on = l == null || g.dataset.l === l;
+    g.classList.toggle('dim', !on);
+    g.style.transform = l != null && g.dataset.l === l ? 'translateY(-10px)' : '';
+  });
+  list.querySelectorAll('li').forEach((li) => li.classList.toggle('on', li.dataset.l === l));
+}
+list.querySelectorAll('li').forEach((li) => {
+  li.tabIndex = 0;
+  li.addEventListener('mouseenter', () => hi(li.dataset.l));
+  li.addEventListener('focus', () => hi(li.dataset.l));
+});
+list.addEventListener('mouseleave', () => hi(null));
+
+/* ---------------- pairs */
+const pairsEl = document.getElementById('pairs');
+pairsEl.innerHTML = JACKETS.filter((j) => j.line === 'men' && j.pair).map((m) => {
+  const w = jacketBySlug(m.pair);
+  return `<button class="pair" data-slug="${m.slug}"><div class="duo"><div data-r="${m.slug}"></div><div data-r="${w.slug}"></div></div><b>${m.name} + ${w.name}</b><span>${m.shell.split(',')[0]}</span></button>`;
+}).join('');
+pairsEl.querySelectorAll('[data-r]').forEach((el) => mountJacket(el, jacketBySlug(el.dataset.r)));
+pairsEl.addEventListener('click', (e) => { const b = e.target.closest('.pair'); if (b) openJacket(b.dataset.slug); });
+
+/* ---------------- campaign band */
+document.getElementById('heroBack').innerHTML = backButton();
+document.getElementById('bandBack').innerHTML = backButton();
+const eb = CAMPAIGN.tiers[0];
+document.getElementById('bandCopy').textContent =
+  `Back any style at ${money(eb.price)} as an early bird, against a planned retail price of ${money(CAMPAIGN.retailPrice)}. Early bird is limited to the first ${eb.limit} backers.`;
+document.getElementById('tiersMini').innerHTML = CAMPAIGN.tiers.map((t) => `<div><span>${t.name}</span><b>${money(t.price)}</b><span>${t.note}</span></div>`).join('');
+</script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Team guide: manufacturing — Copper Frequency</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#120E0B">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .doc-head { padding: clamp(32px, 5vw, 64px) 0 32px; border-bottom: 1px solid var(--rule); }
+  .doc-head h1 { font-size: clamp(56px, 8vw, 120px); margin-bottom: 18px; }
+  .doc-meta { display: flex; min-width: 0; flex-wrap: wrap; gap: 10px 28px; color: var(--ash); font-size: 15px; margin-top: 22px; align-items: center; }
+  .doc-meta b { color: var(--bone); font-weight: 600; }
+  .layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); padding-top: 40px; }
+  .toc { position: sticky; top: 92px; align-self: start; font-size: 15px; }
+  .toc ol { list-style: none; padding: 0; margin: 0; counter-reset: t; }
+  .toc li { counter-increment: t; }
+  .toc a { display: grid; grid-template-columns: 28px 1fr; padding: 7px 10px; border-radius: 8px; color: var(--ash); text-decoration: none; }
+  .toc a::before { content: counter(t); color: var(--copper); font-variant-numeric: tabular-nums; }
+  .toc a:hover, .toc a.on { background: var(--char); color: var(--bone); }
+  @media (max-width: 960px) { .layout { grid-template-columns: minmax(0, 1fr); } .toc { position: static; } .toc ol { display: flex; flex-wrap: wrap; gap: 4px; } .toc a { grid-template-columns: 22px auto; } }
+
+  .doc section { padding: 0 0 72px; scroll-margin-top: 88px; }
+  .doc h2 { font-size: clamp(40px, 4.6vw, 64px); margin-bottom: 18px; }
+  .doc h3 { font-size: 26px; margin: 32px 0 12px; }
+  .doc p, .doc li { color: #d9cfc2; }
+  .doc ul { padding-left: 1.2em; max-width: 72ch; }
+  .doc li { margin-bottom: 6px; }
+
+  .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 24px; }
+  .rules div { border-left: 3px solid var(--copper); background: var(--char); padding: 16px 18px; border-radius: 0 12px 12px 0; }
+  .rules b { display: block; font: 700 22px/1.1 var(--display); margin-bottom: 6px; text-transform: uppercase; }
+  .rules span { color: var(--ash); font-size: 15px; }
+
+  .tbl { width: 100%; border-collapse: collapse; font-size: 15px; margin: 8px 0 8px; }
+  .tbl-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 14px; }
+  .tbl th, .tbl td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .tbl th { color: var(--ash); font-weight: 500; background: var(--char); position: sticky; top: 0; }
+  .tbl tr:last-child td { border-bottom: 0; }
+  .tbl td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tbl select { background: var(--carbon); color: var(--bone); border: 1px solid var(--rule); border-radius: 8px; padding: 6px 8px; font: inherit; font-size: 14px; }
+  .tag { display: inline-block; font-size: 13px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--rule); color: var(--ash); white-space: nowrap; }
+  .tag.tbd { border-color: var(--copper); color: var(--copper-hi); }
+
+  .stylebox { display: grid; grid-template-columns: 280px 1fr; gap: 28px; background: var(--char); border: 1px solid var(--rule); border-radius: 18px; padding: 20px; margin-top: 18px; }
+  .stylebox .stage { border-radius: 12px; }
+  .picker { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .picker button { min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ash); font: 500 14px var(--body); cursor: pointer; }
+  .picker button[aria-pressed="true"] { border-color: var(--copper); color: var(--bone); background: var(--carbon); }
+  @media (max-width: 760px) { .stylebox { grid-template-columns: 1fr; } .stylebox .stage { max-width: 320px; } }
+
+  .steps { list-style: none; padding: 0; margin: 0; counter-reset: st; max-width: 860px; }
+  .steps > li { counter-increment: st; display: grid; grid-template-columns: 56px 1fr; gap: 4px 16px; padding: 20px 0; border-top: 1px solid var(--rule); }
+  .steps > li::before { content: counter(st); grid-row: span 3; font: 800 38px/1 var(--display); color: var(--copper); }
+  .steps h4 { margin: 0; font: 700 24px/1.1 var(--display); text-transform: uppercase; }
+  .steps p { margin: 4px 0 0; }
+  .gate { display: inline-block; margin-top: 8px; font-size: 13px; color: var(--patina); border: 1px solid rgba(116,184,166,.4); padding: 3px 10px; border-radius: 999px; }
+
+  .qc { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .qc fieldset { border: 1px solid var(--rule); border-radius: 16px; padding: 18px 20px 12px; margin: 0; }
+  .qc legend { font: 700 22px var(--display); text-transform: uppercase; padding: 0 8px; }
+  .qc label { display: grid; grid-template-columns: 24px 1fr; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--rule); cursor: pointer; font-size: 15px; color: #d9cfc2; }
+  .qc label:last-child { border-bottom: 0; }
+  .qc input { width: 20px; height: 20px; accent-color: var(--copper); margin: 2px 0 0; }
+  .qc label:has(input:checked) { color: var(--ash); text-decoration: line-through; text-decoration-color: var(--copper); }
+  .qc-bar { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; margin-bottom: 20px; }
+  .qc-bar input[type=text] { background: var(--carbon); border: 1px solid var(--rule); color: var(--bone); border-radius: 10px; padding: 10px 12px; font: inherit; min-width: 200px; }
+  .qc-count { font: 800 30px/1 var(--display); color: var(--copper-hi); }
+  @media (max-width: 860px) { .qc { grid-template-columns: 1fr; } }
+
+  .callout { border: 1px solid var(--copper); border-radius: 14px; padding: 16px 20px; background: rgba(200,116,58,.08); max-width: 860px; margin: 18px 0; }
+  .callout p { margin: 0; }
+
+  @media print {
+    .layout { display: block; padding: 0; }
+    .toc, .picker, .qc-bar button, .stylebox .btn { display: none !important; }
+    .doc h2 { color: #111; font-size: 28pt; } .doc h3, .steps h4, .qc legend { color: #111; }
+    .doc p, .doc li, .qc label, .tbl td { color: #222; }
+    .tbl th { background: #eee; color: #333; } .tbl-wrap, .tbl th, .tbl td, .qc fieldset { border-color: #ccc; }
+    .rules div, .stylebox, .callout { background: #f6f2ec; border-color: #ccc; }
+    .doc section { padding-bottom: 24pt; page-break-inside: auto; }
+    .doc-head h1 { color: #111; font-size: 40pt; }
+  }
+</style>
+</head>
+<body>
+<header id="top"></header>
+
+<main class="wrap">
+  <div class="doc-head">
+    <h1>Manufacturing guide</h1>
+    <p class="lede" style="max-width:62ch">How to build every Copper Frequency jacket: the shared platform, materials, wiring, assembly, testing and what the factory needs from us. For the team and our production partners.</p>
+    <div class="doc-meta">
+      <span>Version <b>0.1 draft</b></span>
+      <span>Status <b>Pre-production</b></span>
+      <span>Values marked <span class="tag tbd">Confirm</span> must be signed off with the factory or EMS partner</span>
+      <button class="btn btn-line btn-sm no-print" onclick="print()">Print or save as PDF</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <nav class="toc no-print" aria-label="Guide sections">
+      <ol>
+        <li><a href="#platform">The platform</a></li>
+        <li><a href="#styles">Style sheets</a></li>
+        <li><a href="#bom">Bill of materials</a></li>
+        <li><a href="#partners">Partners</a></li>
+        <li><a href="#electronics">Electronics</a></li>
+        <li><a href="#assembly">Assembly</a></li>
+        <li><a href="#qc">Quality checks</a></li>
+        <li><a href="#sizing">Sizing</a></li>
+        <li><a href="#samples">Samples and gates</a></li>
+        <li><a href="#compliance">Compliance</a></li>
+      </ol>
+    </nav>
+
+    <div class="doc">
+      <!-- 1 -->
+      <section id="platform">
+        <h2>The platform</h2>
+        <p>Every style is the same four layers. Only the shell changes, so one electronics design, one harness spec and one test procedure cover the whole line.</p>
+        <div class="tbl-wrap"><table class="tbl">
+          <thead><tr><th>Layer</th><th>What it is</th><th>Who makes it</th></tr></thead>
+          <tbody>
+            <tr><td>Shell</td><td>Outer fabric and trims for each style</td><td>Garment factory</td></tr>
+            <tr><td>Copper weave</td><td>Copper-plated conductive fabric, laser-cut to the trace template and heat-bonded under film to the shell interlining</td><td>Garment factory, with fabric from the conductive-fabric supplier</td></tr>
+            <tr><td>Harness and transducers</td><td>Low-voltage wiring, transducer pockets, the hem frequency port and the pod connector</td><td>Garment factory installs; EMS partner supplies the harness</td></tr>
+            <tr><td>Frequency module</td><td>Removable pod with battery, amplifier and USB-C charging, plus the meter plug-in</td><td>EMS partner, shipped to the garment factory finished and tested</td></tr>
+          </tbody>
+        </table></div>
+        <div class="rules">
+          <div><b>5 volts, max</b><span>Nothing in the jacket runs above 5 V. No mains, no high-voltage parts, ever.</span></div>
+          <div><b>No copper on skin</b><span>Every trace is sealed under film or lining. Plated fabric can contain nickel, so it never sits in direct, prolonged skin contact.</span></div>
+          <div><b>Pod out to wash</b><span>All electronics leave with the pod. What stays in the jacket must survive a cold delicate wash.</span></div>
+          <div><b>No health claims</b><span>Labels, hangtags and marketing describe audio and feel only. No medical or therapeutic wording.</span></div>
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section id="styles">
+        <h2>Style sheets</h2>
+        <p>Pick a style for its shell, transducer count, amp wiring and copper trace template. The template is a proportional front view; scale it to the size block before cutting.</p>
+        <div class="picker no-print" id="picker" role="group" aria-label="Choose a style"></div>
+        <div class="stylebox" id="stylebox"></div>
+        <h3>All styles</h3>
+        <div class="tbl-wrap"><table class="tbl" id="styleTable"></table></div>
+      </section>
+
+      <!-- 3 -->
+      <section id="bom">
+        <h2>Bill of materials</h2>
+        <p>Per jacket, shared platform parts. Quantities are planning estimates for a size M; the factory confirms consumption from the marker.</p>
+        <div class="tbl-wrap"><table class="tbl">
+          <thead><tr><th>Part</th><th>Spec</th><th>Qty</th><th>Source</th></tr></thead>
+          <tbody>
+            <tr><td>Shell fabric</td><td>Per style sheet</td><td class="num">2.2–2.8 m <span class="tag tbd">Confirm</span></td><td>Garment factory</td></tr>
+            <tr><td>Lining</td><td>Breathable polyester taffeta or mesh; pod pocket and harness channels built in</td><td class="num">1.8 m</td><td>Garment factory</td></tr>
+            <tr><td>Copper conductive fabric</td><td>Copper-plated polyester ripstop, low surface resistance, laser-cuttable</td><td class="num">0.6 m²</td><td>Conductive-fabric supplier</td></tr>
+            <tr><td>TPU hot-melt film</td><td>Bonds and seals the copper traces; washable grade</td><td class="num">0.8 m²</td><td>Conductive-fabric supplier or trims vendor</td></tr>
+            <tr><td>Tactile transducers</td><td>Flat, low-profile, 4–8 Ω, rated for body-worn use</td><td class="num">Per style</td><td>EMS partner</td></tr>
+            <tr><td>Transducer pockets</td><td>Spacer mesh with a thin foam backer, hook-and-loop closure</td><td class="num">Per style</td><td>Garment factory</td></tr>
+            <tr><td>Harness</td><td>Silicone-insulated stranded wire, 26 AWG, colour-coded per channel; strain relief at every termination</td><td class="num">≈3 m</td><td>EMS partner</td></tr>
+            <tr><td>Pod connector</td><td>Magnetic pogo-pin pair, polarised, minimum 4 pins</td><td class="num">1 pair</td><td>EMS partner</td></tr>
+            <tr><td>Frequency port</td><td>Panel-mount port at the hem with gasket, for the meter plug-in and audio in</td><td class="num">1</td><td>EMS partner</td></tr>
+            <tr><td>Frequency module</td><td>Pod with certified Li-ion cell, protection circuit, class-D amp, USB-C charging, splash-resistant enclosure</td><td class="num">1</td><td>EMS partner</td></tr>
+            <tr><td>Meter plug-in</td><td>LED bar meter driven from the port signal</td><td class="num">1</td><td>EMS partner</td></tr>
+            <tr><td>Trims</td><td>Main zip, snaps, cords, rib knit as per style sheet</td><td class="num">Per style</td><td>Trims vendor</td></tr>
+            <tr><td>Labels</td><td>Care label with pod-removal instructions, fibre content, size, origin, battery label on pod, CF sleeve badge</td><td class="num">1 set</td><td>Trims vendor</td></tr>
+            <tr><td>Packaging</td><td>Garment bag, pod pouch, USB-C cable, quick-start card</td><td class="num">1 set</td><td>Packaging vendor</td></tr>
+          </tbody>
+        </table></div>
+      </section>
+
+      <!-- 4 -->
+      <section id="partners">
+        <h2>Partners</h2>
+        <p>Candidates from our shortlist. Status is saved in this browser only, so use it as your own tracker and share updates in the team channel.</p>
+        <div class="tbl-wrap"><table class="tbl">
+          <thead><tr><th>Partner</th><th>Role</th><th>Ask them for</th><th class="no-print">Status</th></tr></thead>
+          <tbody id="partnerRows"></tbody>
+        </table></div>
+        <div class="callout"><p>Before ordering from anyone: get physical samples, ask for test reports on file (surface resistance for fabric, UN38.3 and IEC 62133 for cells), confirm minimum order quantities and lead times in writing, and run a wash test on the bonded copper before approving a fabric.</p></div>
+      </section>
+
+      <!-- 5 -->
+      <section id="electronics">
+        <h2>Electronics</h2>
+        <p>Reference spec for the EMS partner. It describes what the module has to do; the partner proposes parts and we approve them.</p>
+        <div class="tbl-wrap"><table class="tbl">
+          <thead><tr><th>Block</th><th>Requirement</th></tr></thead>
+          <tbody>
+            <tr><td>Input</td><td>Wired audio in through the frequency port. Wireless is a stretch goal and would use a pre-certified radio module only.</td></tr>
+            <tr><td>Signal</td><td>Low-pass filter around 20–200 Hz before the amp so the transducers carry the low end; gain knob or two-step level button on the pod. <span class="tag tbd">Confirm</span></td></tr>
+            <tr><td>Amplifier</td><td>Two-channel class-D, 5 V supply, roughly 3 W per channel, with thermal and short-circuit protection. <span class="tag tbd">Confirm</span></td></tr>
+            <tr><td>Loads</td><td>Each channel must present at least 4 Ω. Transducer grouping per style is in the style sheets.</td></tr>
+            <tr><td>Battery</td><td>Single 3.7 V Li-ion cell, about 2,000–3,000 mAh, with protection circuit. Cell and pack must carry UN38.3 and IEC 62133 reports. <span class="tag tbd">Confirm</span></td></tr>
+            <tr><td>Charging</td><td>USB-C, 5 V, charge LED, charging blocked above safe cell temperature.</td></tr>
+            <tr><td>Runtime target</td><td>About 8 hours at moderate level. Measure on pre-production samples and publish only measured numbers. <span class="tag tbd">Confirm</span></td></tr>
+            <tr><td>Meter output</td><td>The port provides signal and 5 V for the meter plug-in; the meter must not load or distort the transducer signal.</td></tr>
+            <tr><td>Enclosure</td><td>Splash-resistant pod, no sharp edges, clips into the pod pocket and seats onto the magnetic connector with a positive click.</td></tr>
+          </tbody>
+        </table></div>
+      </section>
+
+      <!-- 6 -->
+      <section id="assembly">
+        <h2>Assembly</h2>
+        <p>In order. Gates are where the unit gets checked before moving on.</p>
+        <ol class="steps">
+          <li><h4>Cut</h4><p>Cut shell, interlining and lining panels from the marker for the size. Laser-cut copper traces from the conductive fabric using the style's trace template, scaled to the size block.</p></li>
+          <li><h4>Bond the copper</h4><p>Lay traces on the interlining using the placement jig and heat-press with TPU film. Use the temperature, time and pressure from the film supplier's datasheet and record them per batch.</p><span class="gate">Gate: peel test on one off-cut per roll</span></li>
+          <li><h4>Seal the traces</h4><p>Cap every trace with a second layer of TPU film so no copper is exposed on the body side. Exposed traces on outer shells (London Calling, Riot) are sealed on both faces.</p></li>
+          <li><h4>Sew the shell</h4><p>Construct the shell. Where a trace crosses a seam, bridge it with a flexible jumper soldered or crimped on each side; never sew through a trace.</p></li>
+          <li><h4>Install pockets and harness</h4><p>Sew transducer pockets to the interlining at the marked positions. Route the harness through the lining channels to the pod pocket (inside left hem) and the frequency port (right hem). Strain-relieve every termination.</p></li>
+          <li><h4>Test before lining</h4><p>Run the pre-lining checks: every trace and harness run for continuity, no shorts between neighbours, and the impedance of each channel within the planned range.</p><span class="gate">Gate: pre-lining checklist complete</span></li>
+          <li><h4>Close up</h4><p>Insert transducers, close pockets, attach lining, then cuffs, hem and collar per style. Install the port gasket and pod connector.</p></li>
+          <li><h4>Power-up test</h4><p>Seat a tested pod, play the sweep track and confirm every transducer moves, nothing buzzes or rattles, and the meter plug-in responds.</p><span class="gate">Gate: final checklist complete</span></li>
+          <li><h4>Finish and pack</h4><p>Remove the pod, press the jacket, attach labels and hangtag, then pack the jacket, pod in its pouch, cable and quick-start card.</p></li>
+        </ol>
+      </section>
+
+      <!-- 7 -->
+      <section id="qc">
+        <h2>Quality checks</h2>
+        <p>One checklist per unit. Ticks are saved in this browser per serial number, so the line lead can keep a few units open at once.</p>
+        <div class="qc-bar no-print">
+          <label for="serial" class="muted">Serial number</label>
+          <input id="serial" type="text" placeholder="e.g. RR-M-0001" autocomplete="off">
+          <span><span class="qc-count" id="qcCount">0/0</span> <span class="muted">checks done</span></span>
+          <button class="btn btn-line btn-sm" id="qcReset">Clear this unit</button>
+        </div>
+        <div class="qc" id="qcForm"></div>
+        <h3>Batch tests</h3>
+        <ul>
+          <li>Wash test: one unit per 50, five cold delicate cycles with the pod removed, then repeat the pre-lining electrical checks.</li>
+          <li>Battery: one pod per 100 fully discharged at moderate level to confirm runtime; record the result.</li>
+          <li>Final inspection: AQL sampling at General Level II, 2.5 for major and 4.0 for minor defects, before the batch ships.</li>
+        </ul>
+      </section>
+
+      <!-- 8 -->
+      <section id="sizing">
+        <h2>Sizing</h2>
+        <p>Body measurements for the base blocks. Each style's tech pack adds its own ease. Transducer positions and harness length grade with the size.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+          <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Men's</th><th>Chest (in)</th><th>Chest (cm)</th></tr></thead><tbody id="sizeM"></tbody></table></div>
+          <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Women's</th><th>Bust (in)</th><th>Bust (cm)</th></tr></thead><tbody id="sizeW"></tbody></table></div>
+        </div>
+        <ul style="margin-top:20px">
+          <li>Chest transducers sit at a fixed fraction of the half-chest width, so they stay centred on the body in every size.</li>
+          <li>Harness length grades about 4 cm per size; the EMS partner supplies one harness length per size.</li>
+          <li>Garment measurement tolerance: ±1 cm on chest and length, ±0.5 cm on sleeve opening.</li>
+        </ul>
+      </section>
+
+      <!-- 9 -->
+      <section id="samples">
+        <h2>Samples and gates</h2>
+        <div class="tbl-wrap"><table class="tbl">
+          <thead><tr><th>Round</th><th>Qty</th><th>What we sign off</th></tr></thead>
+          <tbody>
+            <tr><td>Proto</td><td class="num">1 per style</td><td>Shape, trace layout, transducer feel</td></tr>
+            <tr><td>Fit sample</td><td class="num">1 per style, per line</td><td>Fit on a model in the base size; pocket and port positions</td></tr>
+            <tr><td>Salesman samples</td><td class="num">2–3 per style</td><td>Campaign photos and video, wash and wear testing</td></tr>
+            <tr><td>Pre-production</td><td class="num">1 per style, per size</td><td>Final materials and trims; sealed as the golden sample the factory matches</td></tr>
+            <tr><td>Top of production</td><td class="num">First units off the line</td><td>Compared against the golden sample before the run continues</td></tr>
+            <tr><td>Final inspection</td><td class="num">AQL sample</td><td>Release to ship</td></tr>
+          </tbody>
+        </table></div>
+        <div class="callout"><p>The site uses illustrated renders. Kickstarter expects hardware projects to show a working prototype, so shoot the campaign photos and video on the salesman samples before launch.</p></div>
+      </section>
+
+      <!-- 10 -->
+      <section id="compliance">
+        <h2>Compliance</h2>
+        <p>What has to be in place before units ship. Confirm the exact list for each destination with a test lab.</p>
+        <div class="tbl-wrap"><table class="tbl">
+          <thead><tr><th>Area</th><th>What's needed</th></tr></thead>
+          <tbody>
+            <tr><td>Batteries</td><td>UN38.3 test summary and safety data sheet for the cell or pack, IEC 62133 report, and lithium battery shipping marks for batteries contained in or packed with equipment.</td></tr>
+            <tr><td>Electronics (US)</td><td>FCC Part 15 assessment for the module as a digital device. Any wireless version uses a pre-certified radio module.</td></tr>
+            <tr><td>Electronics (EU, UK)</td><td>CE and UKCA marking, RoHS, WEEE and battery-regulation registration and labelling where we sell.</td></tr>
+            <tr><td>Materials</td><td>Nickel-release limits for any metal that touches skin, REACH substances, and California Prop 65 review of leather, trims and plated fabric.</td></tr>
+            <tr><td>Textile labels</td><td>Fibre content, country of origin, care instructions including pod removal, and the brand identifier.</td></tr>
+            <tr><td>Claims</td><td>Copy describes audio and feel only. No medical, therapeutic or wellness claims on labels, packaging, the site or the campaign.</td></tr>
+          </tbody>
+        </table></div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer id="foot"></footer>
+
+<script src="assets/jackets.js"></script>
+<script src="assets/site.js"></script>
+<script>
+mountChrome('manufacturing');
+
+/* ---------- amp wiring per style */
+function wiring(n) {
+  const per = n / 2;
+  const plan = { 2: ['2 in series', '8 Ω with 4 Ω units'], 3: ['3 in series', '12 Ω with 4 Ω units, a little quieter; EMS partner may propose 6 Ω units instead'], 4: ['2 series × 2 parallel', '4 Ω with 4 Ω units'], 5: ['5 in series, or 4 + 1 split', 'EMS partner to propose'] }[per] || ['—', ''];
+  return { per, how: plan[0], note: plan[1], confirm: per === 3 || per === 5 };
+}
+
+/* ---------- style sheets */
+const picker = document.getElementById('picker'), box = document.getElementById('stylebox');
+picker.innerHTML = JACKETS.map((j) => `<button data-slug="${j.slug}" aria-pressed="false">${j.name}</button>`).join('');
+function showStyle(slug) {
+  const j = jacketBySlug(slug), w = wiring(j.transducers);
+  picker.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.slug === slug));
+  box.innerHTML = `<div id="sbStage"></div>
+    <div>
+      <h3 style="margin:0 0 6px;font-size:40px;text-transform:uppercase">${j.name}</h3>
+      <p class="muted" style="margin:0 0 16px">${j.line === 'men' ? "Men's line" : "Women's line"}${j.pair ? ` · pairs with ${jacketBySlug(j.pair).name}` : ''}</p>
+      <dl class="spec">
+        <dt>Shell</dt><dd>${j.shell}</dd>
+        <dt>Fit</dt><dd>${j.fit}</dd>
+        <dt>Shell colour</dt><dd><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:${j.base};border:1px solid #555;vertical-align:-2px"></span> ${j.base} &nbsp; Trim <span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:${j.trim};border:1px solid #555;vertical-align:-2px"></span> ${j.trim}</dd>
+        <dt>Transducers</dt><dd>${j.transducers} total, ${w.per} per amp channel</dd>
+        <dt>Channel wiring</dt><dd>${w.how} — ${w.note} ${w.confirm ? '<span class="tag tbd">Confirm</span>' : ''}</dd>
+        <dt>Layout</dt><dd>${{ racer: 'Chest pairs, trunk to port', racerFull: 'Chest and rib pairs, sleeve runs to both cuffs', moto: 'Follows the diagonal zip and lapel', array: 'Distributed grid on one bus', exposed: 'Zig-zag runs stitched on the outside of the shell', spine: 'Two columns along the spine line', endo: 'Rib traces wrapping the torso' }[j.layout]}</dd>
+      </dl>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+        <button class="btn btn-cu btn-sm" id="dlTrace">Download trace template (SVG)</button>
+      </div>
+    </div>`;
+  document.getElementById('sbStage').innerHTML = traceTemplate(j).replace('<svg ', '<svg style="background:#fff;border-radius:12px;width:100%;height:auto" ');
+  const dl = (name, svg) => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' })); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); toast('Downloaded ' + name); };
+  document.getElementById('dlTrace').onclick = () => dl(`${j.slug}-trace-template.svg`, `<?xml version="1.0" encoding="UTF-8"?>\n` + traceTemplate(j).replace('<svg ', '<svg style="background:#fff" '));
+}
+picker.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) showStyle(b.dataset.slug); });
+showStyle('randy-racer');
+
+document.getElementById('styleTable').innerHTML = `<thead><tr><th>Style</th><th>Line</th><th>Shell</th><th>Transducers</th><th>Per channel</th></tr></thead><tbody>` +
+  JACKETS.map((j) => { const w = wiring(j.transducers); return `<tr><td><a href="#styles" data-pick="${j.slug}">${j.name}</a></td><td>${j.line === 'men' ? "Men's" : "Women's"}</td><td>${j.shell}</td><td class="num">${j.transducers}</td><td>${w.how}${w.confirm ? ' <span class="tag tbd">Confirm</span>' : ''}</td></tr>`; }).join('') + `</tbody>`;
+document.getElementById('styleTable').addEventListener('click', (e) => { const a = e.target.closest('[data-pick]'); if (a) showStyle(a.dataset.pick); });
+
+/* ---------- partners */
+const PARTNERS = [
+  { name: 'YL Shielding', role: 'Copper conductive fabric', ask: 'Copper-plated ripstop samples, surface resistance data, wash durability data, MOQ and lead time' },
+  { name: '3L Tex', role: 'Copper conductive fabric', ask: 'Same as above, plus TPU-backed or iron-on conductive tape options' },
+  { name: 'Alibaba sourcing', role: 'Transducers, connectors, trims', ask: 'Transducer samples (impedance, rated power, thickness), magnetic pogo connectors, verified-supplier status' },
+  { name: 'WESMART', role: 'Smart-clothing assembly', ask: 'Experience with bonded conductive traces, sample pricing per style, wash-test capability' },
+  { name: 'R&B Smart Clothing', role: 'Smart-clothing assembly', ask: 'Same as WESMART, for comparison quotes' },
+  { name: 'Shenzhen EMS partner', role: 'Frequency module, harness, meter', ask: 'Quote against the electronics spec, battery certification on file, FCC/CE test support' },
+];
+const STATUSES = ['Not contacted', 'Contacted', 'Samples requested', 'Samples in', 'Approved', 'Passed'];
+const pst = store.get('cf-partners', {});
+document.getElementById('partnerRows').innerHTML = PARTNERS.map((p, i) => `<tr><td><b>${p.name}</b></td><td>${p.role}</td><td>${p.ask}</td><td class="no-print"><select data-p="${i}" aria-label="Status for ${p.name}">${STATUSES.map((s) => `<option ${pst[i] === s ? 'selected' : ''}>${s}</option>`).join('')}</select></td></tr>`).join('');
+document.getElementById('partnerRows').addEventListener('change', (e) => { if (e.target.dataset.p != null) { pst[e.target.dataset.p] = e.target.value; store.set('cf-partners', pst); toast('Status saved in this browser'); } });
+
+/* ---------- QC checklist */
+const QC = {
+  'Before lining': [
+    'Every copper trace continuous end to end, under 2 Ω',
+    'No shorts between neighbouring traces',
+    'Each channel impedance within ±15% of the plan',
+    'No copper exposed on the body side',
+    'Seam crossings bridged, no stitches through traces',
+    'Harness strain relief at every termination',
+  ],
+  'Final unit': [
+    'Pod seats with a click and powers on',
+    'Charge LED works on USB-C',
+    'Sweep track: every transducer moves',
+    'No buzz or rattle at full level',
+    'Meter plug-in lights in time with the signal',
+    'Port gasket seated, plug-in held firmly',
+    'Zip, snaps and closures work',
+    'Measurements within tolerance',
+    'Care, size, origin and battery labels attached',
+    'Packed: jacket, pod in pouch, cable, quick-start card',
+  ],
+};
+const total = Object.values(QC).flat().length;
+const serial = document.getElementById('serial'), form = document.getElementById('qcForm'), countEl = document.getElementById('qcCount');
+serial.value = store.get('cf-qc-last', '');
+function key() { return 'cf-qc:' + (serial.value.trim() || 'unsaved'); }
+function renderQC() {
+  const done = store.get(key(), []);
+  let k = 0;
+  form.innerHTML = Object.entries(QC).map(([g, items]) => `<fieldset><legend>${g}</legend>${items.map((it) => { const id = k++; return `<label><input type="checkbox" data-k="${id}" ${done.includes(id) ? 'checked' : ''}><span>${it}</span></label>`; }).join('')}</fieldset>`).join('');
+  countEl.textContent = `${done.length}/${total}`;
+}
+form.addEventListener('change', () => {
+  const done = [...form.querySelectorAll('input:checked')].map((i) => +i.dataset.k);
+  store.set(key(), done); countEl.textContent = `${done.length}/${total}`;
+  if (done.length === total) toast((serial.value.trim() || 'Unit') + ' passed all checks');
+});
+serial.addEventListener('input', () => { store.set('cf-qc-last', serial.value); renderQC(); });
+document.getElementById('qcReset').addEventListener('click', () => { store.set(key(), []); renderQC(); });
+renderQC();
+
+/* ---------- sizing */
+const cm = (a, b) => `${Math.round(a * 2.54)}–${Math.round(b * 2.54)}`;
+document.getElementById('sizeM').innerHTML = [['S', 36, 38], ['M', 39, 41], ['L', 42, 44], ['XL', 45, 47], ['XXL', 48, 50]].map(([s, a, b]) => `<tr><td>${s}</td><td class="num">${a}–${b}</td><td class="num">${cm(a, b)}</td></tr>`).join('');
+document.getElementById('sizeW').innerHTML = [['XS', 31, 32], ['S', 33, 34], ['M', 35, 36], ['L', 37, 39], ['XL', 40, 42]].map(([s, a, b]) => `<tr><td>${s}</td><td class="num">${a}–${b}</td><td class="num">${cm(a, b)}</td></tr>`).join('');
+
+/* ---------- toc state */
+const tl = [...document.querySelectorAll('.toc a')];
+const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) tl.forEach((a) => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); }), { rootMargin: '-30% 0px -65% 0px' });
+document.querySelectorAll('.doc section').forEach((s) => io.observe(s));
+</script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kickstarter — Copper Frequency</title>
+<meta name="description" content="Back Copper Frequency on Kickstarter: twelve jackets wired with copper and tactile transducers. Early bird pricing, Founder editions and matched pairs.">
+<meta property="og:title" content="Copper Frequency on Kickstarter">
+<meta property="og:description" content="Jackets wired with copper and tactile transducers, so you feel the music. Early bird from $289.">
+<meta property="og:image" content="assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#120E0B">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .camp { padding: clamp(28px, 4vw, 56px) 0 clamp(48px, 6vw, 80px); }
+  .camp .wrap { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
+  .duo-stage { display: grid; grid-template-columns: 1fr 1fr; padding: 24px 16px 8px; }
+  .duo-stage .stage { aspect-ratio: 6/7; }
+  .duo-cap { display: flex; justify-content: space-around; padding: 0 16px 20px; font: 700 22px/1 var(--display); text-transform: uppercase; color: var(--ash); }
+  .camp h1 { font-size: clamp(56px, 7.4vw, 112px); margin-bottom: 20px; }
+  .fund { margin-top: 28px; padding: 24px; border: 1px solid var(--rule); border-radius: 18px; background: var(--char); }
+  .bar { height: 8px; border-radius: 8px; background: var(--rule); overflow: hidden; margin: 14px 0 18px; }
+  .bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--copper-lo), var(--copper-hi)); border-radius: inherit; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 22px; }
+  .stats b { display: block; font: 800 34px/1 var(--display); }
+  .stats span { font-size: 14px; color: var(--ash); }
+  @media (max-width: 900px) { .camp .wrap { grid-template-columns: 1fr; } }
+
+  .subnav { position: sticky; top: 68px; z-index: 40; background: color-mix(in srgb, var(--carbon) 90%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .subnav .wrap { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+  .subnav a { flex: none; padding: 14px 14px; color: var(--ash); text-decoration: none; font-size: 15px; border-bottom: 2px solid transparent; }
+  .subnav a.on, .subnav a:hover { color: var(--bone); border-bottom-color: var(--copper); }
+
+  .story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); }
+  .story p { font-size: 18px; }
+  .story .big { font: 700 clamp(28px, 3vw, 40px)/1.15 var(--display); color: var(--bone); max-width: 22ch; }
+  @media (max-width: 860px) { .story { grid-template-columns: 1fr; } }
+
+  .rewards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .tier { display: flex; flex-direction: column; gap: 12px; padding: 24px; border: 1px solid var(--rule); border-radius: 18px; background: var(--char); }
+  .tier.hot { border-color: var(--copper); background: radial-gradient(120% 60% at 50% 0%, rgba(200,116,58,.16), transparent 70%), var(--char); }
+  .tier .price { font: 900 56px/1 var(--display); color: var(--bone); }
+  .tier .price small { font: 500 14px var(--body); color: var(--ash); margin-left: 6px; }
+  .tier h3 { font-size: 26px; text-transform: uppercase; }
+  .tier p { margin: 0; color: var(--ash); font-size: 15px; }
+  .tier .lim { font-size: 14px; color: var(--patina); }
+  .tier .btn, .tier .opens { margin-top: auto; width: 100%; justify-content: center; }
+  .tier .opens { display: block; text-align: center; padding: 12px; border-top: 1px solid var(--rule); color: var(--ash); font-size: 14px; }
+  @media (max-width: 1080px) { .rewards { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .rewards { grid-template-columns: 1fr; } }
+  .addons { display: flex; flex-wrap: wrap; gap: 12px 32px; margin-top: 28px; color: var(--ash); font-size: 15px; }
+  .addons b { color: var(--bone); font-weight: 600; }
+  .note { margin-top: 18px; font-size: 14px; color: var(--ash); }
+
+  .track { position: relative; margin: 8px 0 0; }
+  .track ol { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .track li { padding-top: 34px; position: relative; }
+  .track li::before { content: ''; position: absolute; top: 8px; left: 0; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--copper); background: var(--carbon); }
+  .track li.hit::before { background: var(--copper-hi); }
+  .track::before { content: ''; position: absolute; top: 16px; left: 0; right: 0; height: 2px; background: var(--rule); }
+  .track li b { display: block; font: 800 36px/1 var(--display); color: var(--copper-hi); margin-bottom: 8px; }
+  .track li h3 { font-size: 22px; margin-bottom: 8px; }
+  .track li p { color: var(--ash); font-size: 15px; margin: 0; }
+  @media (max-width: 860px) { .track ol { grid-template-columns: 1fr 1fr; row-gap: 32px; } .track::before { display: none; } }
+
+  .tl { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+  .tl li { counter-increment: s; display: grid; grid-template-columns: 64px 180px 1fr; gap: 16px; padding: 20px 0; border-top: 1px solid var(--rule); align-items: baseline; }
+  .tl li::before { content: counter(s); font: 800 30px/1 var(--display); color: var(--copper); }
+  .tl b { font: 700 24px/1 var(--display); text-transform: uppercase; }
+  .tl span { color: var(--ash); }
+  @media (max-width: 640px) { .tl li { grid-template-columns: 40px 1fr; } .tl span { grid-column: 2; } }
+
+  .risk { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .risk h3 { font-size: 24px; margin-bottom: 10px; }
+  .risk p { color: var(--ash); font-size: 16px; }
+  @media (max-width: 860px) { .risk { grid-template-columns: 1fr; } }
+
+  .faq details { border-top: 1px solid var(--rule); }
+  .faq details:last-child { border-bottom: 1px solid var(--rule); }
+  .faq summary { cursor: pointer; list-style: none; padding: 22px 40px 22px 0; position: relative; font: 700 24px/1.15 var(--display); }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: '+'; position: absolute; right: 4px; top: 18px; font: 400 30px/1 var(--body); color: var(--copper); transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq details p { color: var(--ash); padding-bottom: 20px; margin: 0; }
+  .faq-wrap { max-width: 860px; }
+
+  section[id] { scroll-margin-top: 128px; }
+  .final { text-align: center; }
+  .final h2 { margin-bottom: 20px; }
+  .final .lede { margin: 0 auto 28px; }
+</style>
+</head>
+<body>
+<header id="top"></header>
+
+<main>
+  <section class="camp">
+    <div class="wrap">
+      <div class="plinth">
+        <div class="duo-stage"><div class="stage" id="s1"></div><div class="stage" id="s2"></div></div>
+        <div class="duo-cap"><span>Randy Racer</span><span>Luna</span></div>
+      </div>
+      <div>
+        <h1>Jackets you can feel</h1>
+        <p class="lede">Copper Frequency is a line of twelve jackets wired with a copper circuit and tactile transducers. Plug in your music and the jacket moves with the bass.</p>
+        <div class="fund" id="fund"></div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="subnav" aria-label="Campaign sections">
+    <div class="wrap">
+      <a href="#story">Story</a><a href="#rewards">Rewards</a><a href="#stretch">Stretch goals</a><a href="#timeline">Timeline</a><a href="#risks">Risks</a><a href="#faq">FAQ</a>
+    </div>
+  </nav>
+
+  <section id="story">
+    <div class="wrap story">
+      <p class="big">Headphones put music in your ears. We wanted it in the whole jacket.</p>
+      <div>
+        <p>Every Copper Frequency jacket is built on the same platform. A copper-plated conductive fabric is bonded under the shell and carries the circuit pattern you see on the outside. Flat tactile transducers sit in pockets against your chest, ribs and spine, and turn the low end of whatever you're playing into movement you can feel.</p>
+        <p>A small rechargeable pod drives the system and clips out when you wash the jacket. At the hem there's a frequency port. Plug in the meter and it shows the signal live, right on the jacket.</p>
+        <p>The shells are where each style gets its character: a white F1 racer, a black racer, a leather moto, an MA-1 bomber, an oversized punk jacket, a hooded technical shell and a tactical piece with a copper endoskeleton. Five of them come in a women's cut too.</p>
+        <a class="btn btn-line" href="index.html#collection" style="margin-top:8px">See all twelve styles</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="rewards" class="rule-top">
+    <div class="wrap">
+      <div class="sec-head"><h2>Rewards</h2><p>Every reward includes the frequency module and the meter plug-in. You pick your style and size in the backer survey after the campaign.</p></div>
+      <div class="rewards" id="tiers"></div>
+      <div class="addons" id="addons"></div>
+      <p class="note">Preview pricing in USD. Final pricing and shipping costs are confirmed on the Kickstarter page at launch.</p>
+    </div>
+  </section>
+
+  <section id="stretch" class="rule-top">
+    <div class="wrap">
+      <div class="sec-head"><h2>Stretch goals</h2><p id="goalLine"></p></div>
+      <div class="track"><ol id="stretchList"></ol></div>
+    </div>
+  </section>
+
+  <section id="timeline" class="rule-top">
+    <div class="wrap">
+      <div class="sec-head"><h2>Timeline</h2><p>From the end of the campaign to your door. Months count from the day the campaign closes.</p></div>
+      <ol class="tl" id="tl"></ol>
+    </div>
+  </section>
+
+  <section id="risks" class="rule-top">
+    <div class="wrap">
+      <div class="sec-head"><h2>Risks and challenges</h2><p>Wearable electronics are harder to make than clothing or gadgets alone. Here's where things could slip, and what we're doing about it.</p></div>
+      <div class="risk">
+        <div><h3>Batteries and shipping</h3><p>Lithium cells need certified test reports before they can ship. We're only using cells and packs that already carry UN38.3 and IEC 62133 reports, and we're filing shipping paperwork during pre-production rather than after.</p></div>
+        <div><h3>Wash durability</h3><p>Copper traces have to survive washing and wear. The module clips out, every trace is sealed under film, and each production batch is wash-tested before it's allowed to ship.</p></div>
+        <div><h3>Twelve styles at once</h3><p>Running many styles can slow a first production run. All twelve share one electronics platform, and if timing gets tight, the racing block and bomber ship first while other styles follow, with updates to every backer.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="rule-top">
+    <div class="wrap">
+      <h2 style="margin-bottom:32px">FAQ</h2>
+      <div class="faq faq-wrap">
+        <details><summary>What does the jacket actually do?</summary><p>It's a wearable sound system for your body. Tactile transducers turn the bass in your music into vibration you feel through the jacket. Plug in your phone, a DJ mixer or an instrument and the jacket follows it.</p></details>
+        <details><summary>Is it a health or wellness device?</summary><p>No. Copper Frequency is clothing with built-in audio hardware. We don't make any medical or therapeutic claims about it.</p></details>
+        <details><summary>How do I wash it?</summary><p>Unclip the frequency module, close the pod pocket and hand-wash or use a cold delicate cycle, then hang dry. Leather and canvas styles get their own care instructions on the label.</p></details>
+        <details><summary>How long does the battery last?</summary><p>Our target is a full night out on one charge, about 8 hours at moderate levels. We'll publish measured battery life from pre-production samples during the campaign updates. It charges over USB-C.</p></details>
+        <details><summary>Can I choose my style and size later?</summary><p>Yes. After the campaign ends you'll get a survey to choose your style, line and size. We'll publish full size charts for each style before the survey goes out.</p></details>
+        <details><summary>Do you ship internationally?</summary><p>We plan to ship worldwide. Shipping costs are calculated at checkout on Kickstarter and any import duties are paid on delivery, depending on your country.</p></details>
+        <details><summary>What is the meter plug-in?</summary><p>A small light-bar meter that plugs into the frequency port at the hem. It reads the signal going to the transducers and lights up in time with it. It's removable, and every reward includes one.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final band rule-top">
+    <div class="wrap">
+      <h2>Wear the frequency</h2>
+      <p class="lede" id="finalCopy"></p>
+      <span id="finalBack"></span>
+    </div>
+  </section>
+</main>
+
+<footer id="foot"></footer>
+
+<script src="assets/jackets.js"></script>
+<script src="assets/site.js"></script>
+<script>
+mountChrome('kickstarter');
+mountJacket(document.getElementById('s1'), jacketBySlug('randy-racer'), { animate: true });
+mountJacket(document.getElementById('s2'), jacketBySlug('luna'), { animate: true });
+
+/* funding box */
+const C = CAMPAIGN, pct = Math.min(100, (C.pledged / C.goal) * 100);
+document.getElementById('fund').innerHTML = C.status === 'prelaunch'
+  ? `<div class="stats"><div><b>${money(C.goal)}</b><span>funding goal</span></div><div><b>${money(C.tiers[0].price)}</b><span>early bird price</span></div><div><b>${money(C.retailPrice)}</b><span>planned retail</span></div></div>
+     <div style="display:flex;gap:12px;flex-wrap:wrap">${backButton()}<a class="btn btn-line" href="#rewards">See rewards</a></div>`
+  : `<div class="stats"><div><b>${money(C.pledged)}</b><span>pledged of ${money(C.goal)}</span></div><div><b>${C.backers.toLocaleString()}</b><span>backers</span></div><div><b>${C.daysToGo}</b><span>days to go</span></div></div>
+     <div class="bar" role="progressbar" aria-valuenow="${Math.round(pct)}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pct}%"></i></div>
+     <div style="display:flex;gap:12px;flex-wrap:wrap">${backButton()}<a class="btn btn-line" href="#rewards">See rewards</a></div>`;
+
+/* rewards */
+document.getElementById('tiers').innerHTML = C.tiers.map((t, i) => `
+  <article class="tier ${i === 0 ? 'hot' : ''}">
+    <h3>${t.name}</h3>
+    <div class="price">${money(t.price)}<small>${t.id === 'pair' ? 'for two' : ''}</small></div>
+    <p>${t.gets}</p>
+    <span class="lim">${[t.limit ? `Limited to ${t.limit}` : '', t.note].filter(Boolean).join(' · ')}</span>
+    ${C.kickstarterUrl ? backButton('btn ' + (i === 0 ? 'btn-cu' : 'btn-line'), 'Pledge ' + money(t.price)) : '<span class="opens">Opens at launch</span>'}
+  </article>`).join('');
+document.getElementById('addons').innerHTML = '<span>Add-ons:</span>' + C.addOns.map((a) => `<span><b>${a.name}</b> ${money(a.price)}</span>`).join('');
+
+/* stretch goals */
+document.getElementById('goalLine').textContent = `The campaign funds at ${money(C.goal)}. Everything past that unlocks upgrades for every backer.`;
+document.getElementById('stretchList').innerHTML = C.stretch.map((s) => `
+  <li class="${C.pledged >= s.at ? 'hit' : ''}"><b>${money(s.at / 1000)}k</b><h3>${s.title}</h3><p>${s.text}</p></li>`).join('');
+
+/* timeline */
+document.getElementById('tl').innerHTML = C.timeline.map((t) => `<li><b>${t.when}</b><span>${t.what}</span></li>`).join('');
+
+document.getElementById('finalCopy').textContent = `Early bird pricing is ${money(C.tiers[0].price)} for the first ${C.tiers[0].limit} backers.`;
+document.getElementById('finalBack').innerHTML = backButton();
+
+/* sub-nav state */
+const links = [...document.querySelectorAll('.subnav a')];
+const io = new IntersectionObserver((es) => es.forEach((e) => {
+  if (e.isIntersecting) links.forEach((a) => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+}), { rootMargin: '-45% 0px -50% 0px' });
+links.forEach((a) => { const t = document.querySelector(a.getAttribute('href')); if (t) io.observe(t); });
+</script>
+</body>
+</html>
